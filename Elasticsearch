@@ -1,0 +1,270 @@
+Elasticsearch 
+	- Open source search and analytics engine
+	- Used on SPA's (single page applications)
+	- Apache license 2.0
+	- RESTful API interaction
+	- Uses JSON documents to store data
+
+Key Concepts
+	- Node
+		A node is a single server that is part of your cluster, stores your data, and participates in the cluster’s indexing and search capabilities.
+
+	- Cluster
+		A collection of one or more nodes. Provides indexing and searching across all nodes in cluster. 
+
+	- Index
+		A collection of different types of documents and document properties. For example, you can have an index for customer data, another index for a product catalog, and yet another index for order data.
+
+	- Type
+		Within an index, you can define one or more types. A type is a logical category/partition of your index whose semantics is completely up to you.  For example, let’s assume you run a blogging platform and store all your data in a single index. In this index, you may define a type for user data, another type for blog data, and yet another type for comments data.
+
+	- Document
+		A document is a basic unit of information that can be indexed. For example, you can have a document for a single customer, another document for a single product, and yet another for a single order. This document is expressed in JSON (JavaScript Object Notation) which is an ubiquitous internet data interchange format.
+
+	- Shard
+		 Provides the ability to subdivide your index into multiple pieces called shards. When you create an index, you can simply define the number of shards that you want. Each shard is in itself a fully-functional and independent "index" that can be hosted on any node in the cluster.
+
+		 	- It allows you to horizontally split/scale your content volume
+
+			- It allows you to distribute and parallelize operations across shards (potentially on multiple nodes) thus increasing performance/throughput
+
+		Elasticsearch allows you to make one or more copies of your index’s shards into what are called replica shards, or replicas for short. Replication is important for two primary reasons:
+
+			- It provides high availability in case a shard/node fails. For this reason, it is important to note that a replica shard is never allocated on the same node as the original/primary shard that it was copied from.
+
+			- It allows you to scale out your search volume/throughput since searches can be executed on all replicas in parallel.
+
+		To summarize, each index can be split into multiple shards. An index can also be replicated zero (meaning no replicas) or more times. Once replicated, each index will have primary shards (the original shards that were replicated from) and replica shards (the copies of the primary shards).
+
+- Querying Elasticsearch
+	
+	1.
+		GET /bank/_search
+		{
+  		"query": { "match_all": {} }
+		}
+		"query": { "match_all": {} } says we are passing a query parameter with the valuse of "match_all"
+
+	2.
+		GET /bank/_search
+		{
+		  "query": { "match_all": {} },
+		  "from": 10,
+		  "size": 10
+		}
+		This query returns documents 11 through 20. "From" specifies which document to begin searching from, and "size" determines the number of documents to search through. "From" and "size" default to 0 and 10 respectively when not specified by the query.
+
+	3.
+		GET /bank/_search
+		{
+		  "query": { "match_all": {} },
+		  "sort": { "balance": { "order": "desc" } }
+		}	
+		This query performs a match all and dorts the reuslts by account balance in descending order, returning the top documents (returns 10 because size is not specified).
+
+	4.
+		GET /bank/_search
+		{
+		  "query": { "match_all": {} },
+		  "_source": ["account_number", "balance"]
+		}
+		This query will only return two specified fields from the source documents.
+
+	5.
+		GET /bank/_search
+		{
+		  "query": { "match": { "account_number": 20 } }
+		}
+		Returns the account numbered 20.
+
+	6.
+		GET /bank/_search
+		{
+		  "query": { "match": { "address": "mill lane" } }
+		}
+		Returns all accounts with the term "mill" or "lane" in the address field.
+
+	7.
+		GET /bank/_search
+		{
+		  "query": { "match_phrase": { "address": "mill lane" } }
+		}
+		Returns all accounts with the term "mill lane" in the address field.
+
+	8. 
+		GET /bank/_search
+		{
+		  "query": {
+		    "bool": {
+		      "must": [
+		        { "match": { "address": "mill" } },
+		        { "match": { "address": "lane" } }
+		      ]
+		    }
+		  }
+		}
+		Use boolean expressions to add additional layers of complexity to searches. This query requires that both matches must be met in order for a document to be returned.
+
+	9.
+		GET /bank/_search
+		{
+		  "query": {
+		    "bool": {
+		      "should": [
+		        { "match": { "address": "mill" } },
+		        { "match": { "address": "lane" } }
+		      ]
+		    }
+		  }
+		}
+		Either or both matches can be met for the document to be returned.
+
+	10. 
+		GET /bank/_search
+		{
+		  "query": {
+		    "bool": {
+		      "must_not": [
+		        { "match": { "address": "mill" } },
+		        { "match": { "address": "lane" } }
+		      ]
+		    }
+		  }
+		}
+		Return all accounts that contain neither mill nor lane.
+
+	11.
+		GET /bank/_search
+		{
+		  "query": {
+		    "bool": {
+		      "must_not": [
+		        { "match": { "state": "idaho" } }
+		      ],
+		      "must": [
+		      	{ "match": { "age": "40" } }
+		      ]
+		    }
+		  }
+		}
+		Return all accounts for people who are 40 years old but dont live in Idaho.
+
+	12.
+		GET /bank/_search
+		{
+		  "query": {
+		    "bool": {
+		      "must": { "match_all": {} },
+		      "filter": {
+		        "range": {
+		          "balance": {
+		            "gte": 20000,
+		            "lte": 30000
+		          }
+		        }
+		      }
+		    }
+		  }
+		}
+		Using a filter to limit accounts returned by a balance range.
+
+	13.
+		GET /bank/_search
+		{
+		  "size": 0,
+		  "aggs": {
+		    "group_by_state": {
+		      "terms": {
+		        "field": "state.keyword"
+		      }
+		    }
+		  }
+		}
+		Using an aggregation to group by state and return the top 10 state results by descending count
+
+	14.
+		GET /bank/_search
+		{
+		  "size": 0,
+		  "aggs": {
+		    "group_by_state": {
+		      "terms": {
+		        "field": "state.keyword"
+		      },
+		      "aggs": {
+		        "average_balance": {
+		          "avg": {
+		            "field": "balance"
+		          }
+		        }
+		      }
+		    }
+		  }
+		}
+		Nested aggregation returns the average balance of the top 10 states by descending order.
+
+	15.
+		GET /bank/_search
+		{
+		  "size": 0,
+		  "aggs": {
+		    "group_by_state": {
+		      "terms": {
+		        "field": "state.keyword",
+		        "order": {
+		          "average_balance": "desc"
+		        }
+		      },
+		      "aggs": {
+		        "average_balance": {
+		          "avg": {
+		            "field": "balance"
+		          }
+		        }
+		      }
+		    }
+		  }
+		}
+		Nested aggregation returns the top 10 balances in descending order.
+
+	16.
+		GET /bank/_search
+		{
+		  "size": 0,
+		  "aggs": {
+		    "group_by_age": {
+		      "range": {
+		        "field": "age",
+		        "ranges": [
+		          {
+		            "from": 20,
+		            "to": 30
+		          },
+		          {
+		            "from": 30,
+		            "to": 40
+		          },
+		          {
+		            "from": 40,
+		            "to": 50
+		          }
+		        ]
+		      },
+		      "aggs": {
+		        "group_by_gender": {
+		          "terms": {
+		            "field": "gender.keyword"
+		          },
+		          "aggs": {
+		            "average_balance": {
+		              "avg": {
+		                "field": "balance"
+		              }
+		            }
+		          }
+		        }
+		      }
+		    }
+		  }
+		}
+		Nested aggregation groups fields of age ranges, then by gender, then returns the top 10 avg account balance, per age bracket, by gender.

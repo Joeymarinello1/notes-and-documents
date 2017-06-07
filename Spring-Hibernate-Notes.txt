@@ -1,0 +1,63 @@
+Spring Course Notes
+
+Spring Development Process
+  1. Configure your Spring Beans
+  2. Create a Spring Container
+  3. Retrieve Beans from Spring Container
+
+
+Development Process - Constructor Injection
+  1. Define the dependency interface and class
+  2. Create a constructior in your class for injections
+  3. Configure the dependency injection in Spring config file
+
+Development Process - Setter Injection
+  1. Create setter method(s) in your class for injections
+  2. Configure the dependecy injection in the Spring configuration file
+
+Development Process - Literal Injection from a Properties File
+  1. Create Properties File
+  2. Load Properties File into Spring config file
+  3. Reference values from Properties File
+
+Development Process - Bean Lifecycle Custom init/destroy Methods
+  1. Define your methods for init and destroy
+  2. Configure the method names in Spring config file
+
+Development Process - Configurations Using Java Annotations
+  1. Enable Component scanning in Spring conf file
+  2. Add the @Component Annotation to your Java classes
+  3. Retrieve the bean from the Spring Container
+
+Development Process - Annotations Constructor Injection
+  1. Define the dependency interface and class
+  2. Create a constructor in your class for injections
+  3. Configure the dependency injection with @Autowired annotation
+
+Development Process - Annotations Setter Injection
+  1. Create setter method(s) in your class for injections
+  2. Configure the dependency injection with @Autowired annotation
+
+Development Process - Annotations Field Injection
+  1. Configure the dependency injection using @Autowired annotation
+
+Development Process - Lifecycle Method Annotations
+  1. Implement init and destroy methods
+  2. Annotate with @PostConstruct or @PreDestroy
+
+Development Process - Spring Configuration with Java Code
+  1. Create a Java class and annotate as @Configuration
+  2. Add component scanning support: @ComponentScan (optional)
+  3. Read Spring Java configuration class
+  4. Retrieve bean from Spring container
+
+Development Process - Creating Beans Using Java Code
+  1. Define method to expose bean
+  2. Inject bean dependencies
+  3. Read Spring Java configuration class
+  4. Retrieve bean from Spring container
+
+Development Process - Injecting Literals from properties file using Java Code
+  1. Create Properties File
+  2. Load Properties File in Spring config file
+  3. Reference values from Properties File

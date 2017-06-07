@@ -1,0 +1,35 @@
+Acronyms
+
+SOU (State of Operational Use) - it’s basically the step after your Fitness for Launch, where you have all of the required set up, support, etc. to deploy in production.
+
+LDAP (Lightweight Directory Access Protocal) - is an application protocol used to maintain directory services over the Internet. You can learn more about it here: https://en.wikipedia.org/wiki/Lightweight_Directory_Access_Protocol
+
+TRIT (Thomson Reuters Intelligent Tagging) - A product owned by Platform. Are you familiar with Open Calais? If not, TRIT is basically the productized version of Calais, a text metadata tagging engine. It basically goes through free text and tag entities (companies, people, cities, countries, etc) to a taxonomy. Users can than do something like say “Show me all news stories tagged the NY.”
+
+TMS	(Text and Metadata Services) - Is the software development team in Dan’s org that owns TRIT, PermID.org and CM-Well. Just think of them as another dev org under Dan. They are based in Israel, the  former Clearforest team and build  a lot of our technology for text processing, entity tagging and resolutions and others. For ECP, they are responsible for CM-Well, our RDF warehouse, TRIT, our tagging solution, and PermID.org, our open data platform for PermID content.
+
+CAT	(Content Automation and Transformation)	- is a project / product in F&R designed to take F&R database content and transform it in to RDF for consumption by CM-Well.
+
+BIM/BQM	(Basic Quote Master / Basic Instrument Master) - are F&R databases being built in ECP that master instrument and quote content.
+
+CM-Well	(Content Matrix - Well)	- Our RDF repository owned by TMS. Link here https://thehub.thomsonreuters.com/blogs/danb/2016/02/04/comparing-cm-well-and-datafusion , https://thehub.thomsonreuters.com/docs/DOC-1811676
+
+RDF	(Resource Description Framework) - describes content and relationships in the semantic web. Again, talk to Divya and she can give you the scoop. Here is an overview: https://en.wikipedia.org/wiki/Resource_Description_Framework
+
+CDAP (Cask Data Application Platform) - open source platform that provides both data integration and app development capabilities on Apache Hadoop and Spark. Third-party tool that we license; tool that allows you to build applications in big data; helps link ingesting, processing/transforming, etc. tooling for Hadoop. Helps devs link workflows together in CDAP.
+	- we have our own software (example: metadata registry- Java SDK) that you can use outside CDAP, but can use inside CDAP too
+	- we also have replication tools that work outside CDAP but can use inside CDAP too
+
+CASK (Company that owns CDAP)
+
+DCIS (Data Center & Infrastructure Services) - Tech support group; focus on providing infrastructure, application and data center services across the enterprise to ensure reliable and efficient operations
+
+PGO (Platform Group Operations) - Tech support group; application service & support to improve service availability; front-line support for deployed products
+
+HA architecture	(High-availability architecture) - Basically means continuous and easy failover
+
+Lab-SAND-CI-DEMO-Upgrade-QED-PROD - (environments available for platforms ECP)	Named after planets/moons? Code doesn't flow through all of these environments, but usually flows through at least 4 to get to Prod.
+
+Eagan, Plano, DTC, HTC, CIS, CPS - Names of Thomson Reuters data centers	
+
+ECP	(Enterprise Content Platform)	The group we're a part of

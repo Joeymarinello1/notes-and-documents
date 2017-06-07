@@ -1,0 +1,78 @@
+Docker
+
+What is it?
+- Software container platform to eliminate "works on my machine" problems, increase security, reduce cost, and more.
+
+Docker Image
+- An image is a lightweight, stand-alone, executable package that includes everything needed to run a piece of software, including the code, a runtime, libraries, environment variables, and config files.
+A container is a runtime instance of an image – what the image becomes in memory when actually executed. It runs completely isolated from the host environment by default, only accessing host files
+and ports if configured to do so.
+
+Docker Containers
+- Containers run apps natively on the host machine’s kernel. They have better performance characteristics than virtual machines that only get virtual access to host resources
+through a hypervisor. Containers can get native access, each one running in a discrete process, taking no more memory than any other executable.
+
+Docker Application Hierarchy
+- Docker has 3 levels to every app
+         Stack
+         Services
+         Container
+ The container is at the bottom of the hierarchy. Above that is a serbice which defines how containers behave in production. At the top is the stack which defines the interactions of all the services.
+
+Dockerfile
+- Dockerfile will define what goes on in the environment inside your container. Networking interfaces and disk drives are virtualized inside of the environment, isolated from the rest of your system.
+Have to define things like ports to the outside world and the specifics about what files to copy in. Will behave the same way everywhere it runs.
+
+--------------------------------------------------------------------------------
+- Example Dockerfile, application, and requirements:
+    # Use an official Python runtime as a base image
+    FROM python:2.7-slim
+
+    # Set the working directory to /app
+    WORKDIR /app
+
+    # Copy the current directory contents into the container at /app
+    ADD . /app
+
+    # Install any needed packages specified in requirements.txt
+    RUN pip install -r requirements.txt
+
+    # Make port 80 available tot he world outisde this container
+    EXPOSE 80
+
+    # Define environment variable
+    ENV NAME World
+
+    # RUN app.py when the container launches
+    CMD ["python", "app.py"]
+
+- Example app.py:
+    from flask import Flask
+    from redis import Redis, RedisError
+    import os
+    import socket
+
+    # Connect to Redis
+    redis = Redis(host="redis", db=0, socket_connect_timeout=2, socket_timeout=2)
+
+    app = Flask(__name__)
+
+    @app.route("/")
+    def hello():
+        try:
+            visits = redis.incr("counter")
+        except RedisError:
+            visits = "<i>cannot connect to Redis, counter disabled</i>"
+
+        html = "<h3>Hello {name}!</h3>" \
+               "<b>Hostname:</b> {hostname}<br/>" \
+               "<b>Visits:</b> {visits}"
+        return html.format(name=os.getenv("NAME", "world"), hostname=socket.gethostname(), visits=visits)
+
+    if __name__ == "__main__":
+    	app.run(host='0.0.0.0', port=80)
+
+- requirements.txt:
+    Flask
+    Redis
+--------------------------------------------------------------------------------  

@@ -1,0 +1,98 @@
+| RDF Examples |
+
+-----------------------
+Add RDF doc root tag:
+
+	<rdf:RDF
+		xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> /*Namespace tells any machine reader that the enclosing document is an RDF document*/
+
+	</rdf:RDF>
+
+-----------------------
+Add a statement:
+
+	<rdf:RDF
+		xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+
+		<rdf:Description rdf:about="http://www.FakeExampleURL.com/clothes#t-shirt">
+
+		</rdf:Description>
+
+	</rdf:RDF>
+
+------------------------
+Add predicates:
+
+	<rdf:RDF
+		xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+		xmlns:feature="http://www.FakeExampleURL.com/clothing-features#">
+
+		<rdf:Description rdf:about="http://www.FakeExampleURL.com/clothes#t-shirt">
+
+			<feature:size>X-Large</feature:size>
+			<feature:color rdf:resource="http://FakeExampleURL.com/colors#black"/>
+
+		</rdf:Description>
+
+	</rdf:RDF>
+
+-----------------------
+Statement breakdown:
+
+	<rdf:Description rdf:about="subject">
+		<predicate rdf:resource="object"/>
+		<predicate>Literal value </predicate>
+	</rdf:Description>
+
+-----------------------
+Full example:
+
+	<?xml version="1.0" encoding="UTF-8"?>
+ 
+	<rdf:RDF
+		xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+		xmlns:dc="http://purl.org/dc/elements/1.1/"
+		xmlns:region="http://www.country-regions.fake/">
+ 
+		<rdf:Description rdf:about="http://en.wikipedia.org/wiki/Oxford">
+			<dc:title>Oxford</dc:title>
+			<dc:coverage>Oxfordshire</dc:coverage>
+			<dc:publisher>Wikipedia</dc:publisher>
+			<region:population>10000</region:population>
+			<region:principaltown rdf:resource="http://www.country-regions.fake/oxford"/>
+		</rdf:Description>
+ 
+	</rdf:RDF>
+
+----------------------
+Messing around:
+
+	<?xml version="1.0" encoding="UTF-8"?>
+
+	<rdf:RDF
+		xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+		xmlns:details="http://starcraft.com/players/details"
+		xmlns:region-="http://starcraft.com/regions/">
+
+		<rdf:Description rdf:about="http://starcraft.com/players/Life">
+			<details:race>Zerg</details:race>
+			<details:color>Purple</details:color>
+			<details:MMR>7205</details:MMR>
+			<region:country rdf:resource="http://starcraft.com/regions/south-korea"/>
+		</rdf:Description>
+
+		<rdf:Description rdf:about="http://starcraft.com/players/Serral">
+			<details:race>Protoss</details:race>
+			<details:color>Blue</details:color>
+			<detail:MMR>6830</detail:MMR>
+			<region:server rdf:resource="http://starcraft.com/regions/european-union"/>
+		</rdf:Description>
+
+	</rdf:RDF>
+
+
+
+
+
+
+
