@@ -1,0 +1,30 @@
+- JavaScript Engine
+A program that converts JavaScript code into something
+the processor can understand
+
+- V8 JavaScript Engine
+V8 is Google's open source JavaScript engine
+V8 is written in C++ and is used in Gogole Chrome
+V8 implements ECMAScript
+V8 can run standalone or can be embedded into any C++ application
+You can write things in C++ and make it avaialable to JavaScript,
+  enabling features that arent normally possible within JavaScript.
+
+- JavaScript uses embedding (read: node.js, among other things)
+  to provide the language services that are not standardized,
+  such as:
+  1. Better ways to organize our code into reusable pieces
+  2. Ways to deal with files
+  3. Ways to deal with databases
+  4. The ability to communicate over the internet
+  5. The abilitiy to accept requests and send responses (in the
+     standard format)
+  6. A way to deal with work that takes a long time
+
+- Node is a framework and a library of code
+
+- Modules, Commonjs modules, Exports, and Require
+    1. Modules: A reusable block of code whose existence does not impact
+       other code.
+    2. Commonjs Modules: An agreed upon standard for how code modules
+       should be structured.

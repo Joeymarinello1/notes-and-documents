@@ -1,0 +1,9 @@
+Programming Lingo
+
+- First class functions: Everthing you can do with other types
+  you can do with functions. You can use functions like strings,
+  numbers, etc.
+
+- Expression: A block of code that results in a value.
+
+- Invoke/Call: Run the function.
