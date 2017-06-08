@@ -1,0 +1,14 @@
+
+- Clients and servers:
+
+          Request (in some standard format)
+--------  ---->  --------
+|Client|         |Server| (Performs services)
+--------  <----  --------
+          Response (same standard format)
+
+- Web Server Example:
+  A browser submits an http request to a web servers, and the
+  web server returns an http response. In this example, http
+  is the standard format that is used to send, receive, and
+  understand requests and responses.
