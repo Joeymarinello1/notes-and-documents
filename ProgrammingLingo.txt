@@ -24,3 +24,7 @@ Programming Lingo
   when programming GUI components. A good API makes it easier to
   develop a program by providing the building blocks. A programmer
   then puts the blocks together.
+
+- Revealing Module Pattern: Exposing only the properties and methods
+  you want via a returned object. A very common and clean way to
+  structure and protect code within modules.
