@@ -28,3 +28,59 @@ Programming Lingo
 - Revealing Module Pattern: Exposing only the properties and methods
   you want via a returned object. A very common and clean way to
   structure and protect code within modules.
+
+- Mutate: Changing something. Adding a method or property to an
+  object means you've mutated the object.
+
+- Event Listener: The code that responds to an event. When an event
+  happens, the event listener code runs (Usually a function in JS).
+
+- Magic String: A string that has a special meaning in code. This
+  is bad, because it makes it easy for a typo to cause a bug and hard
+  for tools to help us find it.
+
+- Template Literal: A way to concatenate strings in JavaScript (ES6).
+  Easier to work with than a bunch of string concatenated with '+'.
+
+- Syntactic Sugar: A feature that only changes how you type something,
+  but nothing changes under the hood. It is important to understand what
+  is happening under the hood so we dont make decisions based on flawed
+  assumptions.
+
+- Asynchronus: More than one process running simultaneously. Node does
+  things asynchronously. JavaScript's V8 engine does not.
+
+- Synchronus: One process executing at a time. JavaScript is synchronous.
+  Think of it as only being able to execute one line of code at a time.
+
+- Callback: A callback is a funciton passed to some other function, which
+  we assume will be invoked at some point. The function "calls back"
+  invoking the function you give it when it is done doing it's work.
+
+- libuv: A library to deal with lower level events occurring in the OS.
+  Uses the event loop to constantly check a queue, which contains events
+  from the os that originated from a request from libuv. When libuv sees
+  a completed event in the queue it processes it and sends a callback to
+  V8. Similar to the idea of an event listener.
+
+- Non-blocking: Doing other things without stopping your program from running.
+  This is made possible by Node doing things asynchronously.
+
+- Buffer: A temporary holding spot for data that is being moved from one
+  place to another. Intentionally limited in size so we dont take too long
+  to move data.
+
+- Stream: A sequence of data made available over time. Pieces of data that
+  eventually combine into a whole.
+
+- Binary Data: Data stored in binary. The core of math that computers are based
+  on. Each one or zero is recorded as a bit (binary digit).
+
+- Character Set: A representation of characters as numbers.
+
+- Character Encoding: How characters are stored in binary. The numbers
+  (or code points) are converted and stored in binary.
+
+- UTF-8: Character encoding where each character is represented by 8 bits.
+
+- Byte: 8 bits. 

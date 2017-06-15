@@ -1,4 +1,4 @@
-Spring Course Notes
+Spring Notes
 
 Spring Development Process
   1. Configure your Spring Beans
