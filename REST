@@ -1,0 +1,3 @@
+- Overview
+  1. REST == "REpresentational State Transfer"
+  2. Similar to HTTP. You make a call to a server from a client, and receieve a response from the server.

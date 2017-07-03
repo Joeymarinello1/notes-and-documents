@@ -28,3 +28,13 @@ You can write things in C++ and make it avaialable to JavaScript,
        other code.
     2. Commonjs Modules: An agreed upon standard for how code modules
        should be structured.
+    3. Exports: A way to make something in a javascript file
+       available to a different file. Because modules are self contained,
+       you need to export an object to make it usable in another js file.
+    4. Require: A way to access a module from a separate file.
+
+- Object Literal: In JavaScript, an object literal is a comma-
+  separated list of name-value pairs wrapped in curly braces.
+  Object literals encapsulate data, enclosing it in a tidy package.
+  This minimizes the use of global variables which can cause problems
+  when combining code.

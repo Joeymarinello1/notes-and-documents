@@ -1,0 +1,47 @@
+1. Objects and Arrays:
+    myObj = {
+        "name":"John",
+        "age":30,
+        "cars": [
+            { "name":"Ford", "models":[ "Fiesta", "Focus", "Mustang" ] },
+            { "name":"BMW", "models":[ "320", "X3", "X5" ] },
+            { "name":"Fiat", "models":[ "500", "Panda" ] }
+        ]
+     }
+
+
+     for (i in myObj.cars) {
+        x += "<h1>" + myObj.cars[i].name + "</h1>";
+        for (j in myObj.cars[i].models) {
+            x += myObj.cars[i].models[j];
+        }
+    }
+
+----------
+2. Parsing/Stringifying JSON:
+    - Use JSON.parse() to convert text into a JavaScript Object
+    - Use JSON.stringify to convery JavaScript Objects into text
+
+    var txt = '{ "name":"John", "age":30, "city":"New York"}';
+    var obj = JSON.parse('{ "name":"John", "age":30, "city":"New York"}');
+    var ObjectToString = JSON.stringify(obj);
+
+----------
+3. HTML Dropdown List Example:
+    obj = { "table":"customers", "limit":20 };
+    dbParam = JSON.stringify(obj);
+    xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            myObj = JSON.parse(this.responseText);
+            txt += "<select>"
+            for (x in myObj) {
+                txt += "<option>" + myObj[x].name;
+            }
+            txt += "</select>"
+            document.getElementById("demo").innerHTML = txt;
+        }
+    }
+    xmlhttp.open("POST", "json_demo_db_post.php", true);
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlhttp.send("x=" + dbParam);

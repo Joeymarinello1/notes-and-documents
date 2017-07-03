@@ -30,6 +30,6 @@ HA architecture	(High-availability architecture) - Basically means continuous an
 
 Lab-SAND-CI-DEMO-Upgrade-QED-PROD - (environments available for platforms ECP)	Named after planets/moons? Code doesn't flow through all of these environments, but usually flows through at least 4 to get to Prod.
 
-Eagan, Plano, DTC, HTC, CIS, CPS - Names of Thomson Reuters data centers	
+Eagan, Plano, DTC, HTC, CIS, CPS - Names of Thomson Reuters data centers
 
 ECP	(Enterprise Content Platform)	The group we're a part of
